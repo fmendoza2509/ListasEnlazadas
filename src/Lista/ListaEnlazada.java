@@ -44,5 +44,38 @@ public class ListaEnlazada {
 		}
 		return temp.ObtenerValor();
 	}
+	//Método para eliminar primero
+	public void EliminarPrimero() {
+		cabeza = cabeza.ObtenerSiguiente();
+		size--;
+	}
+	//Método para eliminar un elemento en un indice en especifico
+	public void Eliminar(int i) {
+		int contador = 0;
+		Nodo temp = cabeza;
+		if(i==0) {
+			cabeza = cabeza.ObtenerSiguiente();
+		}else {
+			while(contador<i-1) {
+				temp = temp.ObtenerSiguiente();
+				contador++;
+			}
+			temp.EnlazarSiguiente(temp.ObtenerSiguiente().ObtenerSiguiente());
+		}
+		size--;
+	}
+	//Método para cortar la lista enlazada
+	public void Cortar(int i) {
+		//1 -> 2 -> 3 -> 4 -> 5-> 6
+		//1 -> 2 -> 3 ...
+		int contador =0;
+		Nodo temp = cabeza;
+		while(contador<i-1) {
+			temp = temp.ObtenerSiguiente();
+			contador++;
+		}
+		temp.EnlazarSiguiente(null);//con esto le decimos que llega hasta ahí
+		size = i;//redimencionamos la lista
+	}
 }
 
